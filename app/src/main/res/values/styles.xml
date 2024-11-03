@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.YourApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Atur warna status bar -->
+        <item name="android:statusBarColor">@color/green1</item> <!-- Sesuaikan warna di sini -->
+        <item name="android:windowLightStatusBar">true</item> <!-- Agar ikon status bar gelap, tergantung background -->
+    </style>
+
+</resources>

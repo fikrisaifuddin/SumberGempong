@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">S_GEMPONG</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_image">Gambar Profil</string>
+    <string name="username">user name</string>
+    <string name="imagesettings">icon</string>
+</resources>

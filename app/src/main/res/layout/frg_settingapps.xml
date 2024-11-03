@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/grey1">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/top_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:backgroundTint="@color/green1"
+        app:titleTextColor="@android:color/black"
+        app:title="Settings"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/top_setting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Management Homestay"
+            android:textSize="20sp"
+            android:layout_gravity="start"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            />
+
+        <Button
+            android:id="@+id/btn_homestay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="lihat"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/green1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:height="50dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Management Pendopo"
+            android:textSize="20sp"
+            android:layout_gravity="start"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="lihat"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/green1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:height="50dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Management Content"
+            android:textSize="20sp"
+            android:layout_gravity="start"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="lihat"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/green1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:height="50dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Management Makanan"
+            android:textSize="20sp"
+            android:layout_gravity="start"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="lihat"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/green1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:height="50dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Management Oleh-Oleh"
+            android:textSize="20sp"
+            android:layout_gravity="start"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="lihat"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/green1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:height="50dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Management Wahana"
+            android:textSize="20sp"
+            android:layout_gravity="start"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="lihat"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/green1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:height="50dp"
+            />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
