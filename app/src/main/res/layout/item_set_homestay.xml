@@ -2,12 +2,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp"
-    android:background="?android:attr/selectableItemBackground">
+    android:padding="10dp"
+    android:background="@drawable/radius"
+    android:layout_margin="5dp">
 
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_weight="1"
@@ -24,15 +25,24 @@
 
             <TextView
                 android:id="@+id/namahomestay"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@android:color/darker_gray"
-                android:visibility="gone"/>
+                android:textColor="@android:color/darker_gray" />
     </LinearLayout>
         <Button
+            android:id="@+id/btn_lihat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="lihat"/>
+            android:backgroundTint="@color/green1"
+            android:text="lihat"
+            android:layout_marginEnd="3dp"
+            android:textAlignment="center"/>
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="69dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:text="Del"/>
 
 </LinearLayout>

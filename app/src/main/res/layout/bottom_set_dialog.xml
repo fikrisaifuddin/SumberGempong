@@ -10,18 +10,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:backgroundTint="@color/black"
+        />
 
     <TextView
         android:id="@+id/tHargaTiket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:backgroundTint="@color/black"
+        />
 
     <TextView
         android:id="@+id/tHargaHomestay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:backgroundTint="@color/black"
+        />
 
 </LinearLayout>

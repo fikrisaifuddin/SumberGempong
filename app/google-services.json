@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "291618035927",
+    "project_id": "sumbergempong-d5713",
+    "storage_bucket": "sumbergempong-d5713.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291618035927:android:f2209c70760c9a49ec3892",
+        "android_client_info": {
+          "package_name": "com.example.s_gempong"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOpyloUQqXu0dE7hr2wWl0nlv74En_ksU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -7,14 +7,11 @@
     <item
         android:id="@+id/tiket"
         android:icon="@drawable/tiket"
-        android:title="tiket" />
+        android:title="Tiket" />
     <item
-        android:id="@+id/blank"
-        android:title="" />
-    <item
-        android:id="@+id/history"
-        android:icon="@drawable/history"
-        android:title="History" />
+        android:id="@+id/denah"
+        android:icon="@drawable/vector__7_"
+        android:title="Denah" />
     <item
         android:id="@+id/akun"
         android:icon="@drawable/akun"

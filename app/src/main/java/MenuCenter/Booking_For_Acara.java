@@ -1,16 +1,19 @@
 package MenuCenter;
 
 import android.app.DatePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextWatcher;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,129 +23,165 @@ import androidx.fragment.app.Fragment;
 
 import com.example.s_gempong.R;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
 public class Booking_For_Acara extends Fragment {
 
-    private EditText etTanggal;
-    private EditText elTanggal;
-    private String selectedHomestay;
+    private EditText Penyelenggara,NamaAcara,etTanggal, etJumlahPengunjung, etTotalHarga;
     private Calendar checkInDate;
+    private DatabaseReference databaseReference;
+    private int hargaTiketMasuk;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frg_booking_acara, container, false);
 
-        Button okeButton = view.findViewById(R.id.btn_ok);
+        etTanggal = view.findViewById(R.id.etTanggal);
+        etJumlahPengunjung = view.findViewById(R.id.jmlh_pengunjung);
+        etTotalHarga = view.findViewById(R.id.total);
+        Penyelenggara = view.findViewById(R.id.penyelenggara);
+        NamaAcara = view.findViewById(R.id.namaacara);
 
-        Toolbar toolbar = view.findViewById(R.id.top_setting);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        databaseReference = FirebaseDatabase.getInstance().getReference("tiket");
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
-            }
+        // Ambil harga HTM dari database
+        fetchTicketPrice();
+
+        etTanggal.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    getContext(),
+                    (view1, year1, month1, dayOfMonth) -> {
+                        Calendar selectedDate = Calendar.getInstance();
+                        selectedDate.set(year1, month1, dayOfMonth);
+
+                        Calendar today = Calendar.getInstance();
+                        today.set(Calendar.HOUR_OF_DAY, 0);
+                        today.set(Calendar.MINUTE, 0);
+                        today.set(Calendar.SECOND, 0);
+                        today.set(Calendar.MILLISECOND, 0);
+
+                        if (selectedDate.before(today)) {
+                            Snackbar.make(v, "Tanggal tidak boleh kurang dari hari ini!", Snackbar.LENGTH_LONG).show();
+                        } else {
+                            checkInDate = selectedDate;
+
+                            String selectedDateStr = dayOfMonth + "/" + (month1 + 1) + "/" + year1;
+                            etTanggal.setText(selectedDateStr);
+
+                            calculateTotalPrice();
+                        }
+                    },
+                    year, month, day);
+            datePickerDialog.show();
         });
 
-        String[] homestays = {"Homestay A", "Homestay B", "Homestay C", "Tanpa Homestay"};
-        Spinner spinner = view.findViewById(R.id.spinner_homestay);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, homestays);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        etJumlahPengunjung.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                selectedHomestay = homestays[position];
+            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                calculateTotalPrice();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-            }
+            public void afterTextChanged(Editable editable) {}
         });
 
-        etTanggal = view.findViewById(R.id.etTanggalin);
-        etTanggal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+        Button okeButton = view.findViewById(R.id.btn_oke);
+        okeButton.setOnClickListener(v -> {
+            String tanggal = etTanggal.getText().toString();
+            String jumlahPengunjungStr = etJumlahPengunjung.getText().toString();
+            String penyelenggara = Penyelenggara.getText().toString();
+            String namaacara = NamaAcara.getText().toString();
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        getContext(),
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                // Simpan tanggal check-in
-                                checkInDate = Calendar.getInstance();
-                                checkInDate.set(year, month, dayOfMonth);
 
-                                String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
-                                etTanggal.setText(selectedDate);
+            if (tanggal.isEmpty() || jumlahPengunjungStr.isEmpty()) {
+                Snackbar.make(v, "Semua data harus diisi!", Snackbar.LENGTH_LONG).show();
+                return;
+            }
+
+            if (penyelenggara.isEmpty() || namaacara.isEmpty()) {
+                Snackbar.make(v, "Penyelenggara dan Nama Acara harus diisi!", Snackbar.LENGTH_LONG).show();
+                return;
+            }
+
+
+            int jumlahPengunjung = Integer.parseInt(jumlahPengunjungStr);
+            int totalHarga = Integer.parseInt(etTotalHarga.getText().toString());
+
+            // Simpan ke Firebase
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            DatabaseReference userTransactionRef = FirebaseDatabase.getInstance().getReference("acara").child(userId);
+            String transaksiId = userTransactionRef.push().getKey();
+
+            if (transaksiId != null) {
+                AcaraBooking bookingData = new AcaraBooking(tanggal,penyelenggara,namaacara, jumlahPengunjung, totalHarga);
+                userTransactionRef.child(transaksiId).setValue(bookingData)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Snackbar.make(v, "Tiket berhasil dipesan!", Snackbar.LENGTH_LONG).show();
+                                clearFields();
+                            } else {
+                                Snackbar.make(v, "Gagal menyimpan transaksi.", Snackbar.LENGTH_LONG).show();
                             }
-                        },
-                        year, month, day);
-
-                datePickerDialog.show();
-            }
-        });
-
-        elTanggal = view.findViewById(R.id.etTanggalout);
-        elTanggal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkInDate == null) {
-                    // Jika belum memilih tanggal check-in, tampilkan pesan error
-                    Snackbar.make(v, "Silakan pilih tanggal check-in terlebih dahulu", Snackbar.LENGTH_SHORT).show();
-                    return;
-                }
-
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        getContext(),
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                // Simpan tanggal check-out
-                                Calendar checkOutDate = Calendar.getInstance();
-                                checkOutDate.set(year, month, dayOfMonth);
-
-                                // Validasi tanggal keluar harus lebih dari tanggal masuk
-                                if (checkOutDate.after(checkInDate)) {
-                                    String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
-                                    elTanggal.setText(selectedDate);
-                                } else {
-                                    Snackbar.make(v, "Tanggal keluar harus lebih dari tanggal masuk!", Snackbar.LENGTH_SHORT).show();
-                                }
-                            }
-                        },
-                        year, month, day);
-
-                datePickerDialog.show();
-            }
-        });
-
-        okeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String oke = "Cek pesanan anda di menu tiket";
-
-                Snackbar snackbar = Snackbar.make(v, oke, Snackbar.LENGTH_LONG);
-
-                snackbar.setAnchorView(v);
-                snackbar.show();
+                        });
             }
         });
 
         return view;
     }
+
+    private void fetchTicketPrice() {
+        databaseReference.child("Tiket").child("htm").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    hargaTiketMasuk = Integer.parseInt(snapshot.getValue(String.class));
+                } else {
+                    Snackbar.make(getView(), "Harga tiket belum diatur.", Snackbar.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Snackbar.make(getView(), "Gagal memuat harga tiket.", Snackbar.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void calculateTotalPrice() {
+        String jumlahPengunjungStr = etJumlahPengunjung.getText().toString();
+
+        if (jumlahPengunjungStr.isEmpty() || checkInDate == null) {
+            return;
+        }
+
+        int jumlahPengunjung = Integer.parseInt(jumlahPengunjungStr);
+        int totalHarga = hargaTiketMasuk * jumlahPengunjung;
+        etTotalHarga.setText(String.valueOf(totalHarga));
+    }
+
+    private void clearFields() {
+        etTanggal.setText("");
+        etJumlahPengunjung.setText("");
+        etTotalHarga.setText("");
+        Penyelenggara.setText("");
+        NamaAcara.setText("");
+    }
 }
+

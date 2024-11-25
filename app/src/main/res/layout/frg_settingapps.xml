@@ -13,8 +13,9 @@
         android:background="@color/white"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:backgroundTint="@color/green1"
-        app:titleTextColor="@android:color/black"
-        app:title="Settings"
+        app:titleTextColor="@android:color/white"
+        app:titleTextAppearance="@style/CustomToolbarTitleText"
+        app:title="Settings Apps"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -24,137 +25,215 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/top_setting"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="5dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Management Homestay"
-            android:textSize="20sp"
-            android:layout_gravity="start"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
-            />
-
-        <Button
-            android:id="@+id/btn_homestay"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="lihat"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@color/green1"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:height="50dp"
-            />
+            android:orientation="horizontal"
+            android:background="@drawable/radius"
+            android:padding="5dp"
+            android:layout_marginVertical="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Management Pendopo"
-            android:textSize="20sp"
-            android:layout_gravity="start"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
-            />
+            <TextView
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:text="Management Homestay"
+                android:backgroundTint="@color/black"
+                android:textSize="20sp"
+                android:layout_gravity="start"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"/>
 
-        <Button
+            <Button
+                android:id="@+id/btn_homestay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lihat"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/green1"
+                android:layout_marginVertical="5dp"
+                android:height="50dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="lihat"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@color/green1"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:height="50dp"
-            />
+            android:orientation="horizontal"
+            android:background="@drawable/radius"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:text="Management Harga Tiket"
+                android:backgroundTint="@color/black"
+                android:textSize="20sp"
+                android:layout_gravity="start"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="20dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Management Content"
-            android:textSize="20sp"
-            android:layout_gravity="start"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
-            />
+            <Button
+                android:id="@+id/btn_Tiket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lihat"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/green1"
+                android:layout_marginVertical="5dp"
+                android:height="50dp" />
+        </LinearLayout>
 
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="lihat"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@color/green1"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:height="50dp"
-            />
+            android:orientation="horizontal"
+            android:background="@drawable/radius"
+            android:padding="5dp"
+            android:layout_marginVertical="10dp">
+            <TextView
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:text="Management Pendopo"
+                android:textSize="20sp"
+                android:backgroundTint="@color/black"
+                android:layout_gravity="start"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="20dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Management Makanan"
-            android:textSize="20sp"
-            android:layout_gravity="start"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
-            />
+            <Button
+                android:id="@+id/btn_Pendopo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lihat"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/green1"
+                android:layout_marginVertical="5dp"
+                android:height="50dp" />
+        </LinearLayout>
 
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="lihat"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@color/green1"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:height="50dp"
-            />
+            android:orientation="horizontal"
+            android:background="@drawable/radius"
+            android:padding="5dp"
+            android:layout_marginVertical="5dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Management Oleh-Oleh"
-            android:textSize="20sp"
-            android:layout_gravity="start"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
-            />
+            <TextView
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:text="Management Makanan"
+                android:textSize="20sp"
+                android:backgroundTint="@color/black"
+                android:layout_gravity="start"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="20dp" />
 
-        <Button
+            <Button
+                android:id="@+id/btn_makanan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lihat"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/green1"
+                android:layout_marginVertical="5dp"
+                android:height="50dp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="lihat"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@color/green1"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:height="50dp"
-            />
+            android:orientation="horizontal"
+            android:background="@drawable/radius"
+            android:padding="5dp"
+            android:layout_marginVertical="5dp">
+
+            <TextView
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:text="Management Oleh-Oleh"
+                android:backgroundTint="@color/black"
+                android:textSize="20sp"
+                android:layout_gravity="start"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="20dp" />
+
+            <Button
+                android:id="@+id/btn_Oleholeh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lihat"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/green1"
+                android:layout_marginVertical="5dp"
+                android:height="50dp"/>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/radius"
+        android:padding="5dp"
+        android:layout_marginVertical="5dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:text="Management Wahana"
+            android:backgroundTint="@color/black"
             android:textSize="20sp"
             android:layout_gravity="start"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginHorizontal="20dp"
             />
 
         <Button
-            android:layout_width="match_parent"
+            android:id="@+id/btn_Wahana"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="lihat"
             android:textColor="@android:color/white"
             android:backgroundTint="@color/green1"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="5dp"
             android:height="50dp"
             />
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/radius"
+            android:padding="5dp"
+            android:layout_marginVertical="5dp">
+
+            <TextView
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:text="Management Akun User"
+                android:backgroundTint="@color/black"
+                android:textSize="20sp"
+                android:layout_gravity="start"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="20dp"
+                />
+
+            <Button
+                android:id="@+id/btn_User"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lihat"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/green1"
+                android:layout_marginVertical="5dp"
+                android:height="50dp"
+                />
+        </LinearLayout>
 
     </LinearLayout>
 

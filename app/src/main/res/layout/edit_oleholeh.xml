@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/grey1">
+
+    <EditText
+        android:id="@+id/edit_nama_oleholeh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nama Produk"
+        android:backgroundTint="@color/black"
+        />
+
+    <EditText
+        android:id="@+id/edit_harga_oleholeh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Harga produk"
+        android:inputType="number"
+        android:backgroundTint="@color/black"
+        />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Simpan"
+        android:backgroundTint="@color/green1"/>
+</LinearLayout>

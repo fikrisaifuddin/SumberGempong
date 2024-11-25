@@ -17,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import Navigation.Akun;
 import Navigation.History;
 import Navigation.Home;
-import Navigation.Tiket;
+import Navigation.PesananSaya;
 import Navigation.denah;
 import User.Login;
 
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        // Atur status bar
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.green1));
@@ -47,27 +48,20 @@ public class MainActivity extends AppCompatActivity {
             if (itemId == R.id.home) {
                 fragment = new Home();
             } else if (itemId == R.id.tiket) {
-                fragment = new Tiket();
-            } else if (itemId == R.id.history) {
-                fragment = new History();
+                fragment = new PesananSaya();
+            } else if (itemId == R.id.denah) {
+                fragment = new denah();
             } else if (itemId == R.id.akun) {
                 fragment = new Akun();
             }
             return loadFragment(fragment);
         });
 
-
-        bottomNavigationView.getMenu().getItem(2).setEnabled(false);
-
+        // Default fragment
         if (savedInstanceState == null) {
             loadFragment(new Home());
         }
 
-        FloatingActionButton fab = findViewById(R.id.fab_map);
-        fab.setOnClickListener(view -> {
-            Fragment fragment = new denah();
-            loadFragment(fragment);
-        });
     }
 
     private boolean loadFragment(Fragment fragment) {
@@ -75,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, fragment)
-                    .addToBackStack(null) // Menambahkan transaksi ke back stack
+                    .addToBackStack(null)
                     .commit();
             return true;
         }
@@ -90,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportFragmentManager().popBackStack(); // Kembali ke fragment sebelumnya
+            getSupportFragmentManager().popBackStack();
         } else {
-            super.onBackPressed(); // Jika tidak ada fragment, gunakan default back action
+            super.onBackPressed();
         }
     }
 }

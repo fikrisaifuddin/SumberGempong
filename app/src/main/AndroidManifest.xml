@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-configuration android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -19,6 +21,41 @@
         <activity
             android:name="User.Register"
             android:exported="true" />
+        <activity
+            android:name="User.ForgotPassword"
+            android:exported="true" />
+        <activity
+            android:name="User.ResetPassword"
+            android:exported="true" />
+        <activity
+            android:name="MenuSettingsApps.HomestayAddActivity"
+            android:exported="true" />
+        <activity
+            android:name="MenuSettingsApps.MakananAddActivity"
+            android:exported="true" />
+        <activity
+            android:name="MenuSettingsApps.MakananEdit"
+            android:exported="true" />
+        <activity
+            android:name="MenuSettingsApps.OleholehAddActivity"
+            android:exported="true" />
+        <activity
+            android:name="MenuSettingsApps.OleholehEdit"
+            android:exported="true" />
+        <activity
+            android:name="MenuSettingsApps.WahanaAddActivity"
+            android:exported="true" />
+        <activity
+            android:name="MenuSettingsApps.WahanaEdit"
+            android:exported="true" />
+        <activity
+            android:name="MenuSettingsApps.HomestayManagement"
+            android:exported="true" />
+
+
+
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

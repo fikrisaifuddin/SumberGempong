@@ -13,7 +13,8 @@
         android:background="@color/white"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:backgroundTint="@color/green1"
-        app:titleTextColor="@android:color/black"
+        app:titleTextColor="@android:color/white"
+        app:titleTextAppearance="@style/CustomToolbarTitleText"
         app:title="Booking Tiket"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +104,6 @@
                 android:gravity="top"
                 android:layout_marginHorizontal="5dp">
 
-
                 <TextView
                         android:id="@+id/pengunjung"
                         android:layout_width="wrap_content"
@@ -115,6 +115,7 @@
                         android:textSize="15sp"/>
 
                     <EditText
+                        android:id="@+id/jmlh_pengunjung"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:paddingLeft="20dp"
@@ -136,7 +137,6 @@
             android:paddingHorizontal="10dp">
 
             <TextView
-                android:id="@+id/total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="harga tiket : "
@@ -147,6 +147,7 @@
                 android:layout_marginBottom="10dp"/>
 
             <EditText
+                android:id="@+id/total"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:paddingLeft="20dp"

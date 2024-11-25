@@ -13,8 +13,9 @@
         android:background="@color/white"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:backgroundTint="@color/green1"
-        app:titleTextColor="@android:color/black"
-        app:title="Settings"
+        app:titleTextColor="@android:color/white"
+        app:titleTextAppearance="@style/CustomToolbarTitleText"
+        app:title="Setting Homestay"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -24,22 +25,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="start"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/top_setting"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/all_homestay"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fab_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/green1"
         app:layout_constraintBottom_toBottomOf="parent"

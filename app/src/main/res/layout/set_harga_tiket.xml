@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey1">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/top_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:backgroundTint="@color/green1"
+        app:titleTextColor="@android:color/white"
+        app:titleTextAppearance="@style/CustomToolbarTitleText"
+        app:title="Setting Harga Tiket"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/Wni"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/top_setting"
+        android:background="@drawable/radius"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radius001"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Harga Tiket Masuk"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginVertical="5dp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Harga Tiket Masuk"
+            />
+
+        <EditText
+            android:id="@+id/harga_tiket_masuk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Harga Tiket" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/WNa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/Wni"
+        android:background="@drawable/radius"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radius001"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Harga Tiket Parkir"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginVertical="5dp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Harga Parkir Sepeda Motor"
+            />
+
+        <EditText
+            android:id="@+id/harga_parkir_motor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Harga" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Harga Parkir Mobil"
+            />
+
+        <EditText
+            android:id="@+id/harga_parkir_mobil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Harga"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Harga Parkir Elf"
+            />
+
+        <EditText
+            android:id="@+id/harga_parkir_elf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Harga"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="update"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/WNa"
+        android:backgroundTint="@color/green1"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
