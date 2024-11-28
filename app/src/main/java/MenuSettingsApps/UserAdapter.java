@@ -41,7 +41,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
             // Menangani klik pada item
             holder.itemView.setOnClickListener(v -> {
-                // Kirim data ke fragment tujuan
+                
                 Fragment fragment = new UserInformation();
 
                 // Menggunakan Bundle untuk mengirimkan data

@@ -7,13 +7,17 @@ public class AcaraBooking {
     private String tanggal;
     private int jumlahPengunjung;
     private int totalHarga;
+    private String kodeBooking;
 
-    public AcaraBooking(String tanggal,String penyelenggara,String namaacara, int jumlahPengunjung, int totalHarga) {
+
+    public AcaraBooking(String kodeBooking, String tanggal,String penyelenggara, String namaacara, int jumlahPengunjung, int totalHarga) {
         this.penyelenggara = penyelenggara;
         this.namaacara = namaacara;
         this.tanggal = tanggal;
         this.jumlahPengunjung = jumlahPengunjung;
         this.totalHarga = totalHarga;
+        this.kodeBooking = kodeBooking;
+
     }
 
     public String getTanggal() {
@@ -50,5 +54,14 @@ public class AcaraBooking {
 
     public void setTotalHarga(int totalHarga) {
         this.totalHarga = totalHarga;
+    }
+
+
+    public String getKodeBooking() {
+        return kodeBooking;
+    }
+
+    public void setKodeBooking(String kodeBooking) {
+        this.kodeBooking = kodeBooking;
     }
 }

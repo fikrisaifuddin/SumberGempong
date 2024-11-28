@@ -76,7 +76,6 @@ public class Booking_Homestay extends Fragment {
                 Snackbar.make(getView(), "Booking berhasil.", Snackbar.LENGTH_SHORT).show();
             }
         });
-
         return view;
     }
 
@@ -87,7 +86,7 @@ public class Booking_Homestay extends Fragment {
 
         String message = "Halo Admin,\n" +
                 "Saya ingin melakukan booking homestay dengan detail sebagai berikut:\n" +
-                "Homestay: " + selectedHomestay + "\n" +
+                "Tempat: " + selectedHomestay + "\n" +
                 "Tanggal Masuk: " + etTanggal.getText().toString() + "\n" +
                 "Tanggal Keluar: " + elTanggal.getText().toString() + "\n" +
                 "Jumlah Pengunjung: " + etJumlahPengunjung.getText().toString() + "\n" +
@@ -182,11 +181,11 @@ public class Booking_Homestay extends Fragment {
         Random random = new Random();
         StringBuilder code = new StringBuilder();
         for (int i = 0; i < 6; i++) {
-            int digit = random.nextInt(36); // Menghasilkan angka antara 0-35
+            int digit = random.nextInt(36);
             if (digit < 10) {
-                code.append(digit);  // Menambahkan angka (0-9)
+                code.append(digit);
             } else {
-                code.append((char) ('A' + digit - 10));  // Menambahkan huruf (A-Z)
+                code.append((char) ('A' + digit - 10));
             }
         }
         return code.toString();

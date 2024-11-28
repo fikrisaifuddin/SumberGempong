@@ -1,7 +1,8 @@
 package MenuCenter;
 
 import android.app.DatePickerDialog;
-import android.graphics.Color;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextWatcher;
 import android.text.Editable;
@@ -11,14 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.ArrayAdapter;
-import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.s_gempong.R;
@@ -28,14 +24,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
+import java.util.Random;
 
 public class Booking_For_Acara extends Fragment {
 
-    private EditText Penyelenggara,NamaAcara,etTanggal, etJumlahPengunjung, etTotalHarga;
+    private EditText Penyelenggara, NamaAcara, etTanggal, etJumlahPengunjung, etTotalHarga;
     private Calendar checkInDate;
     private DatabaseReference databaseReference;
     private int hargaTiketMasuk;
@@ -109,7 +105,6 @@ public class Booking_For_Acara extends Fragment {
             String penyelenggara = Penyelenggara.getText().toString();
             String namaacara = NamaAcara.getText().toString();
 
-
             if (tanggal.isEmpty() || jumlahPengunjungStr.isEmpty()) {
                 Snackbar.make(v, "Semua data harus diisi!", Snackbar.LENGTH_LONG).show();
                 return;
@@ -120,9 +115,9 @@ public class Booking_For_Acara extends Fragment {
                 return;
             }
 
-
             int jumlahPengunjung = Integer.parseInt(jumlahPengunjungStr);
             int totalHarga = Integer.parseInt(etTotalHarga.getText().toString());
+            String bookingCode = generateUniqueCode();
 
             // Simpan ke Firebase
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -130,11 +125,12 @@ public class Booking_For_Acara extends Fragment {
             String transaksiId = userTransactionRef.push().getKey();
 
             if (transaksiId != null) {
-                AcaraBooking bookingData = new AcaraBooking(tanggal,penyelenggara,namaacara, jumlahPengunjung, totalHarga);
+                AcaraBooking bookingData = new AcaraBooking(bookingCode, tanggal, penyelenggara, namaacara, jumlahPengunjung, totalHarga);
                 userTransactionRef.child(transaksiId).setValue(bookingData)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
                                 Snackbar.make(v, "Tiket berhasil dipesan!", Snackbar.LENGTH_LONG).show();
+                                sendWhatsAppMessage(bookingCode, penyelenggara, namaacara, tanggal, jumlahPengunjung, totalHarga);
                                 clearFields();
                             } else {
                                 Snackbar.make(v, "Gagal menyimpan transaksi.", Snackbar.LENGTH_LONG).show();
@@ -183,5 +179,37 @@ public class Booking_For_Acara extends Fragment {
         Penyelenggara.setText("");
         NamaAcara.setText("");
     }
-}
 
+    private String generateUniqueCode() {
+        Random random = new Random();
+        StringBuilder code = new StringBuilder();
+        for (int i = 0; i < 6; i++) {
+            int digit = random.nextInt(36);
+            if (digit < 10) {
+                code.append(digit);
+            } else {
+                code.append((char) ('A' + digit - 10));
+            }
+        }
+        return code.toString();
+    }
+
+    private void sendWhatsAppMessage(String bookingCode, String penyelenggara, String namaAcara, String tanggal, int jumlahPengunjung, int totalHarga) {
+        String message = "Halo,\n" +
+                "Berikut adalah detail booking Anda:\n" +
+                "- Kode Booking: " + bookingCode + "\n" +
+                "- Penyelenggara: " + penyelenggara + "\n" +
+                "- Nama Acara: " + namaAcara + "\n" +
+                "- Tanggal: " + tanggal + "\n" +
+                "- Jumlah Pengunjung: " + jumlahPengunjung + "\n" +
+                "- Total Harga: Rp " + totalHarga + "\n\n" +
+                "Terima kasih telah menggunakan layanan kami!";
+
+        String phoneNumber = "62XXXXXXXXXX";
+        String whatsappUrl = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + Uri.encode(message);
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(whatsappUrl));
+        startActivity(intent);
+    }
+}
