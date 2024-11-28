@@ -15,7 +15,6 @@ import java.util.List;
 public class PesananAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final List<Object> pesananList;
-    private static final int TYPE_TIKET = 0;
     private static final int TYPE_HOMESTAY = 1;
     private static final int TYPE_ACARA = 2;
 
@@ -25,9 +24,7 @@ public class PesananAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemViewType(int position) {
-        if (pesananList.get(position) instanceof TiketBooking) {
-            return TYPE_TIKET;
-        } else if (pesananList.get(position) instanceof HomestayBooking) {
+        if (pesananList.get(position) instanceof HomestayBooking) {
             return TYPE_HOMESTAY;
         } else if (pesananList.get(position) instanceof AcaraBooking) {
             return TYPE_ACARA;
@@ -38,10 +35,7 @@ public class PesananAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == TYPE_TIKET) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_tiket_booking, parent, false);
-            return new TiketViewHolder(view);
-        } else if (viewType == TYPE_HOMESTAY) {
+        if (viewType == TYPE_HOMESTAY) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_homestay_booking, parent, false);
             return new HomestayViewHolder(view);
         } else if (viewType == TYPE_ACARA) {
@@ -51,24 +45,17 @@ public class PesananAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return null;
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (getItemViewType(position) == TYPE_TIKET) {
-            TiketBooking tiket = (TiketBooking) pesananList.get(position);
-            TiketViewHolder tiketViewHolder = (TiketViewHolder) holder;
-            tiketViewHolder.tglBooking.setText(tiket.getTanggal());
-            tiketViewHolder.hargaBooking.setText(String.valueOf(tiket.getTotalHarga()));
-            tiketViewHolder.jmlhPengunjung.setText(String.valueOf(tiket.getJumlahPengunjung()));
-            tiketViewHolder.kewarganegaraan.setText(tiket.getKewarganegaraan());
-        } else if (getItemViewType(position) == TYPE_HOMESTAY) {
+        if (getItemViewType(position) == TYPE_HOMESTAY) {
             HomestayBooking homestay = (HomestayBooking) pesananList.get(position);
             HomestayViewHolder homestayViewHolder = (HomestayViewHolder) holder;
-            homestayViewHolder.tanggalin.setText(homestay.getTanggalIn());
-            homestayViewHolder.tanggalout.setText(homestay.getTanggalOut());
+            homestayViewHolder.tanggalin.setText(homestay.getCheckin());
+            homestayViewHolder.tanggalout.setText(homestay.getCheckout());
             homestayViewHolder.hargaBooking.setText(String.valueOf(homestay.getTotalPrice()));
             homestayViewHolder.jmlhPengunjung.setText(String.valueOf(homestay.getJmlhPengunjung()));
             homestayViewHolder.homestay.setText(homestay.getHomestay());
+            homestayViewHolder.kodeBooking.setText(homestay.getKodeBooking());
         } else if (getItemViewType(position) == TYPE_ACARA) {
             AcaraBooking acara = (AcaraBooking) pesananList.get(position);
             AcaraViewHolder acaraViewHolder = (AcaraViewHolder) holder;
@@ -77,34 +64,22 @@ public class PesananAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             acaraViewHolder.namaacara.setText(acara.getnamaacara());
             acaraViewHolder.jumlahPengunjung.setText(String.valueOf(acara.getJumlahPengunjung()));
             acaraViewHolder.totalHarga.setText(String.valueOf(acara.getTotalHarga()));
+            acaraViewHolder.kodeBooking.setText(acara.getKodeBooking());
         }
     }
-
 
     @Override
     public int getItemCount() {
         return pesananList.size();
     }
 
-    public static class TiketViewHolder extends RecyclerView.ViewHolder {
-
-        TextView tglBooking, hargaBooking, jmlhPengunjung, kewarganegaraan;
-
-        public TiketViewHolder(View itemView) {
-            super(itemView);
-            tglBooking = itemView.findViewById(R.id.tglbooking);
-            hargaBooking = itemView.findViewById(R.id.hargabooking);
-            jmlhPengunjung = itemView.findViewById(R.id.jmlh_pengunjung);
-            kewarganegaraan = itemView.findViewById(R.id.kewarganegaraan);
-        }
-    }
-
     public static class HomestayViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tanggalin, tanggalout, hargaBooking, jmlhPengunjung, homestay;
+        TextView tanggalin, tanggalout, hargaBooking, jmlhPengunjung, homestay, kodeBooking;
 
         public HomestayViewHolder(View itemView) {
             super(itemView);
+            kodeBooking = itemView.findViewById(R.id.kodebooking);
             tanggalin = itemView.findViewById(R.id.tglbookingin);
             tanggalout = itemView.findViewById(R.id.tglbookingout);
             hargaBooking = itemView.findViewById(R.id.hargabooking);
@@ -115,10 +90,11 @@ public class PesananAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public static class AcaraViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tanggal, penyelenggara, namaacara, jumlahPengunjung, totalHarga;
+        TextView tanggal, penyelenggara, namaacara, jumlahPengunjung, totalHarga, kodeBooking;
 
         public AcaraViewHolder(View itemView) {
             super(itemView);
+            kodeBooking = itemView.findViewById(R.id.kodebooking);
             tanggal = itemView.findViewById(R.id.tanggal);
             penyelenggara = itemView.findViewById(R.id.penyelenggara);
             namaacara = itemView.findViewById(R.id.namaacara);

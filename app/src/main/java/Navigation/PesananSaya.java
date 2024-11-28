@@ -27,7 +27,6 @@ public class PesananSaya extends Fragment {
     private RecyclerView recyclerView;
     private PesananAdapter pesananAdapter;
     private List<Object> pesananList;
-    private DatabaseReference userTransactionRef;
     private FirebaseUser currentUser;
 
     @Nullable
@@ -50,35 +49,14 @@ public class PesananSaya extends Fragment {
         if (currentUser != null) {
             String userId = currentUser.getUid();
 
-            userTransactionRef = FirebaseDatabase.getInstance().getReference("transaksi").child(userId);
             DatabaseReference homestayRef = FirebaseDatabase.getInstance().getReference("bookinghomestay").child(userId);
             DatabaseReference acaraRef = FirebaseDatabase.getInstance().getReference("acara").child(userId);
 
-
-            fetchTiketData(userTransactionRef);
             fetchHomestayData(homestayRef);
             fetchAcaraData(acaraRef);
         }
 
         return view;
-    }
-
-    private void fetchTiketData(DatabaseReference reference) {
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    TiketBooking tiketData = data.getValue(TiketBooking.class);
-                    pesananList.add(tiketData);
-                }
-                pesananAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Handle error
-            }
-        });
     }
 
     private void fetchHomestayData(DatabaseReference reference) {
@@ -116,5 +94,4 @@ public class PesananSaya extends Fragment {
             }
         });
     }
-
 }

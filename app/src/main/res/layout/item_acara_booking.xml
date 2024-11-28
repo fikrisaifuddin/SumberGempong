@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="10dp"
     android:layout_margin="5dp"
     android:background="@drawable/radius">
@@ -21,9 +21,40 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:text="Penyelenggara : "
+                android:text="Kode : "
                 android:textStyle="bold"
                 android:textSize="18dp"
+                android:backgroundTint="@color/black"/>
+            <TextView
+                android:id="@+id/kodebooking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Kode"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:backgroundTint="@color/black"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Penyelenggara : "
+                android:textSize="14dp"
                 android:backgroundTint="@color/black"/>
             <TextView
                 android:id="@+id/penyelenggara"
@@ -31,8 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:text="Nama"
-                android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="14dp"
                 android:backgroundTint="@color/black"/>
         </LinearLayout>
 
@@ -45,8 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:text="Nama Acara : "
-                android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="14dp"
                 android:backgroundTint="@color/black"/>
             <TextView
                 android:id="@+id/namaacara"
@@ -54,8 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:text="Nama"
-                android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="14dp"
                 android:backgroundTint="@color/black"/>
         </LinearLayout>
 

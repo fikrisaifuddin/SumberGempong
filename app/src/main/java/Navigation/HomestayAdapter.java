@@ -30,8 +30,8 @@ public class HomestayAdapter extends RecyclerView.Adapter<HomestayAdapter.Homest
     @Override
     public void onBindViewHolder(@NonNull HomestayViewHolder holder, int position) {
         HomestayBooking homestay = homestayList.get(position);
-        holder.tanggalin.setText(homestay.getTanggalIn());
-        holder.tanggalout.setText(homestay.getTanggalOut());
+        holder.tanggalin.setText(homestay.getCheckin());
+        holder.tanggalout.setText(homestay.getCheckout());
         holder.hargaBooking.setText(String.valueOf(homestay.getTotalPrice()));
         holder.jmlhPengunjung.setText(String.valueOf(homestay.getJmlhPengunjung()));
         holder.homestay.setText(homestay.getHomestay());

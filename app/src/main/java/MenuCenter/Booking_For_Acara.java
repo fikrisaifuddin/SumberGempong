@@ -205,7 +205,7 @@ public class Booking_For_Acara extends Fragment {
                 "- Total Harga: Rp " + totalHarga + "\n\n" +
                 "Terima kasih telah menggunakan layanan kami!";
 
-        String phoneNumber = "62XXXXXXXXXX";
+        String phoneNumber = "6282140258470";
         String whatsappUrl = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + Uri.encode(message);
 
         Intent intent = new Intent(Intent.ACTION_VIEW);

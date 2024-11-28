@@ -1,44 +1,82 @@
 package Navigation;
 
-import com.google.firebase.database.PropertyName;
-
 public class HomestayBooking {
-    private String id;
     private String checkin;
     private String checkout;
     private String homestay;
     private int jmlhPengunjung;
     private int totalPrice;
+    private String userId;
+    private String kodeBooking;
 
-    public HomestayBooking() {}
 
-    @PropertyName("id")
-    public String getId() {
-        return id;
+    public HomestayBooking(String checkin, String checkout, String homestay, int jmlhPengunjung, int totalPrice, String userId, String kodeBooking) {
+        this.checkin = checkin;
+        this.checkout = checkout;
+        this.homestay = homestay;
+        this.jmlhPengunjung = jmlhPengunjung;
+        this.totalPrice = totalPrice;
+        this.userId = userId;
+        this.kodeBooking = kodeBooking;
+
     }
 
-    @PropertyName("checkin")
-    public String getTanggalIn() {
-        return checkin;
+    public HomestayBooking(){}
+
+    public String getCheckin() {return checkin;
     }
 
-    @PropertyName("checkout")
-    public String getTanggalOut() {
+    public void setCheckin(String checkin) {
+        this.checkin = checkin;
+    }
+
+    public String getCheckout() {
         return checkout;
     }
 
-    @PropertyName("homestay")
+    public void setCheckout(String checkout) {
+        this.checkout = checkout;
+    }
+
     public String getHomestay() {
         return homestay;
     }
 
-    @PropertyName("jmlhPengunjung")
+    public void setHomestay(String homestay) {
+        this.homestay = homestay;
+    }
+
     public int getJmlhPengunjung() {
         return jmlhPengunjung;
     }
 
-    @PropertyName("totalPrice")
-    public int getTotalPrice() {
+    public void setJmlhPengunjung(int jmlhPengunjung) {
+        this.jmlhPengunjung = jmlhPengunjung;
+    }
+
+    public double getTotalPrice() {
         return totalPrice;
     }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getKodeBooking() {
+        return kodeBooking;
+    }
+
+    public void setKodeBooking(String kodeBooking) {
+        this.kodeBooking = kodeBooking;
+    }
+
 }
+

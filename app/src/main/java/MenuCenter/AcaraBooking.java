@@ -1,6 +1,5 @@
 package MenuCenter;
 
-
 public class AcaraBooking {
     private String penyelenggara;
     private String namaacara;
@@ -9,7 +8,6 @@ public class AcaraBooking {
     private int totalHarga;
     private String kodeBooking;
 
-
     public AcaraBooking(String kodeBooking, String tanggal,String penyelenggara, String namaacara, int jumlahPengunjung, int totalHarga) {
         this.penyelenggara = penyelenggara;
         this.namaacara = namaacara;
@@ -17,51 +15,31 @@ public class AcaraBooking {
         this.jumlahPengunjung = jumlahPengunjung;
         this.totalHarga = totalHarga;
         this.kodeBooking = kodeBooking;
-
     }
 
     public String getTanggal() {
         return tanggal;
     }
-    public void setpenyelenggara(String penyelenggara) {
-        this.penyelenggara=penyelenggara;
-    }
-    public String getpenyelenggara() {
-        return penyelenggara;
-    }
-    public void setnamaacara(String namaacara) {
-        this.namaacara=namaacara;
-    }
-    public String getnamaacara() {
-        return namaacara;
-    }
 
-    public void setTanggal(String tanggal) {
-        this.tanggal = tanggal;
-    }
+    public void setpenyelenggara(String penyelenggara) {this.penyelenggara=penyelenggara;}
 
-    public int getJumlahPengunjung() {
-        return jumlahPengunjung;
-    }
+    public String getpenyelenggara() {return penyelenggara;}
 
-    public void setJumlahPengunjung(int jumlahPengunjung) {
-        this.jumlahPengunjung = jumlahPengunjung;
-    }
+    public void setnamaacara(String namaacara) {this.namaacara=namaacara;}
 
-    public int getTotalHarga() {
-        return totalHarga;
-    }
+    public String getnamaacara() {return namaacara;}
 
-    public void setTotalHarga(int totalHarga) {
-        this.totalHarga = totalHarga;
-    }
+    public void setTanggal(String tanggal) {this.tanggal = tanggal;}
 
+    public int getJumlahPengunjung() {return jumlahPengunjung;}
 
-    public String getKodeBooking() {
-        return kodeBooking;
-    }
+    public void setJumlahPengunjung(int jumlahPengunjung) {this.jumlahPengunjung = jumlahPengunjung;}
 
-    public void setKodeBooking(String kodeBooking) {
-        this.kodeBooking = kodeBooking;
-    }
+    public int getTotalHarga() {return totalHarga;}
+
+    public void setTotalHarga(int totalHarga) {this.totalHarga = totalHarga;}
+
+    public String getKodeBooking() {return kodeBooking;}
+
+    public void setKodeBooking(String kodeBooking) {this.kodeBooking = kodeBooking;}
 }

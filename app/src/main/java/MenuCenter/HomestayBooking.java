@@ -5,11 +5,11 @@ public class HomestayBooking {
     private String checkout;
     private String homestay;
     private int jmlhPengunjung;
-    private double totalPrice;
+    private int totalPrice;
     private String userId;
     private String kodeBooking;
 
-    public HomestayBooking(String checkin, String checkout, String homestay, int jmlhPengunjung, double totalPrice, String userId, String kodeBooking) {
+    public HomestayBooking(String checkin, String checkout, String homestay, int jmlhPengunjung, int totalPrice, String userId, String kodeBooking) {
         this.checkin = checkin;
         this.checkout = checkout;
         this.homestay = homestay;
@@ -55,7 +55,7 @@ public class HomestayBooking {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
 

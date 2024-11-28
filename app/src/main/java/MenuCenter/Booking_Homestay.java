@@ -58,6 +58,7 @@ public class Booking_Homestay extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         loadHomestaysFromFirebase(adapter, spinner);
+
         etTanggal = view.findViewById(R.id.etTanggalin);
         etTanggal.setOnClickListener(v -> showDatePicker(v, etTanggal, null)); // Check-in date
         elTanggal = view.findViewById(R.id.etTanggalout);
@@ -191,7 +192,6 @@ public class Booking_Homestay extends Fragment {
         return code.toString();
     }
 
-
     private boolean validateForm() {
         String checkIn = etTanggal.getText().toString();
         String checkOut = elTanggal.getText().toString();
@@ -215,7 +215,7 @@ public class Booking_Homestay extends Fragment {
 
         String bookingCode = generateUniqueCode();
 
-        HomestayBooking booking = new HomestayBooking(checkIn, checkOut, selectedHomestay, Integer.parseInt(jumlahPengunjung), Double.parseDouble(totalPrice), userId, bookingCode);
+        HomestayBooking booking = new HomestayBooking(checkIn, checkOut, selectedHomestay, Integer.parseInt(jumlahPengunjung), Integer.parseInt(totalPrice), userId, bookingCode);
 
         DatabaseReference bookingReference = FirebaseDatabase.getInstance().getReference("bookinghomestay").child(userId);
         String bookingId = bookingReference.push().getKey();
