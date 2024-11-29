@@ -8,6 +8,7 @@ public class AcaraBooking {
     private int jumlahPengunjung;
     private int totalHarga;
     private String kodeBooking;
+    private long timestamp;
 
     public AcaraBooking() {}
 
@@ -19,6 +20,7 @@ public class AcaraBooking {
         this.jumlahPengunjung = jumlahPengunjung;
         this.totalHarga = totalHarga;
         this.kodeBooking = kodeBooking;
+        this.timestamp = System.currentTimeMillis();
     }
 
     public String getId() {
@@ -48,4 +50,6 @@ public class AcaraBooking {
     public String getKodeBooking() {return kodeBooking;}
 
     public void setKodeBooking(String kodeBooking) {this.kodeBooking = kodeBooking;}
+
+    public long getTimestamp() {return timestamp;}
 }

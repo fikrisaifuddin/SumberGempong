@@ -8,6 +8,8 @@ public class HomestayBooking {
     private int totalPrice;
     private String userId;
     private String kodeBooking;
+    private long timestamp;
+
 
 
     public HomestayBooking(String checkin, String checkout, String homestay, int jmlhPengunjung, int totalPrice, String userId, String kodeBooking) {
@@ -18,7 +20,7 @@ public class HomestayBooking {
         this.totalPrice = totalPrice;
         this.userId = userId;
         this.kodeBooking = kodeBooking;
-
+        this.timestamp = System.currentTimeMillis();
     }
 
     public HomestayBooking(){}
@@ -74,8 +76,9 @@ public class HomestayBooking {
         return kodeBooking;
     }
 
-    public void setKodeBooking(String kodeBooking) {
-        this.kodeBooking = kodeBooking;
+    public void setKodeBooking(String kodeBooking) {this.kodeBooking = kodeBooking;}
+    public long getTimestamp() {
+        return timestamp;
     }
 
 }
