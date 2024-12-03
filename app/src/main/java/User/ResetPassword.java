@@ -3,11 +3,14 @@ package User;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.s_gempong.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +24,10 @@ public class ResetPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.green1));
+
 
         etNewPassword = findViewById(R.id.et_new_password);
         etConfirmNewPassword = findViewById(R.id.et_confirm_new_password);

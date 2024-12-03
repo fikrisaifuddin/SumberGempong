@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white">
+    android:background="@drawable/book001">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/top_setting"
@@ -29,56 +29,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="10dp"
-        android:orientation="horizontal"
-        android:gravity="top"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="6dp"
-        android:background="@drawable/e_text_white"
-        android:paddingHorizontal="10dp">
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="start|center"
-            android:src="@drawable/sg_date"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:orientation="horizontal"
+            android:gravity="top"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/radius002"
+            android:paddingHorizontal="10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
-                android:orientation="vertical"
-                android:gravity="top"
-                android:layout_marginHorizontal="5dp">
+                android:text="Booking dan lakukan pembayaran di loked"
+                android:textColor="@color/black"
+                android:layout_gravity="start"
+                android:textSize="15sp"
+                android:layout_marginBottom="10dp"/>
 
-                <TextView
-                    android:id="@+id/Tanggalin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pilih Tanggal : "
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_gravity="start"
-                    android:textSize="15sp"/>
 
-                <EditText
-                    android:id="@+id/etTanggalin"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:paddingLeft="20dp"
-                    android:textColor="@color/black"
-                    android:hint="Pilih Tanggal"
-                    android:focusable="false"
-                    android:clickable="true"
-                    />
-
-            </LinearLayout>
         </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,7 +61,7 @@
         android:gravity="top"
         android:layout_marginHorizontal="5dp"
         android:layout_marginTop="6dp"
-        android:background="@drawable/e_text_white"
+        android:background="@drawable/radius002"
         android:paddingHorizontal="10dp">
 
         <ImageView
@@ -133,7 +107,7 @@
             android:gravity="top"
             android:layout_marginHorizontal="5dp"
             android:layout_marginTop="6dp"
-            android:background="@drawable/e_text_white"
+            android:background="@drawable/radius002"
             android:paddingHorizontal="10dp">
 
             <TextView

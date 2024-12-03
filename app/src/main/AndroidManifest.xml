@@ -49,8 +49,13 @@
             android:name="MenuSettingsApps.WahanaEdit"
             android:exported="true" />
         <activity
-            android:name="MenuSettingsApps.HomestayManagement"
+            android:name="MenuSettingsApps.AddVerificationHomestay"
             android:exported="true" />
+        <activity
+            android:name="MenuSettingsApps.AddVerificationAcara"
+            android:exported="true" />
+
+
 
 
 

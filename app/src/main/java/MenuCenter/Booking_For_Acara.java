@@ -129,7 +129,7 @@ public class Booking_For_Acara extends Fragment {
                 userTransactionRef.child(transaksiId).setValue(bookingData)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                Snackbar.make(v, "Tiket berhasil dipesan!", Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(v, "Tiket berhasil dipesan!,silahkan melakukan DP", Snackbar.LENGTH_LONG).show();
                                 sendWhatsAppMessage(bookingCode, penyelenggara, namaacara, tanggal, jumlahPengunjung, totalHarga);
                                 clearFields();
                             } else {

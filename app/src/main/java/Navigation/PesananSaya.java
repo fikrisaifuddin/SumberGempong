@@ -65,7 +65,7 @@ public class PesananSaya extends Fragment {
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     HomestayBooking homestayData = data.getValue(HomestayBooking.class);
-                    pesananList.add(homestayData);
+                    pesananList.add(0, homestayData); // Menambahkan data di posisi awal
                 }
                 pesananAdapter.notifyDataSetChanged();
             }
@@ -76,6 +76,7 @@ public class PesananSaya extends Fragment {
             }
         });
     }
+
 
     private void fetchAcaraData(DatabaseReference reference) {
         reference.addValueEventListener(new ValueEventListener() {
@@ -83,7 +84,7 @@ public class PesananSaya extends Fragment {
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     AcaraBooking acaraData = data.getValue(AcaraBooking.class);
-                    pesananList.add(acaraData);
+                    pesananList.add(0, acaraData); // Menambahkan data di posisi awal
                 }
                 pesananAdapter.notifyDataSetChanged();
             }
@@ -94,4 +95,5 @@ public class PesananSaya extends Fragment {
             }
         });
     }
+
 }

@@ -9,13 +9,13 @@ public class User {
     private String address;
 
     public User() {
-
     }
-
 
     public User(String username, String email) {
         this.username = username;
         this.email = email;
+        this.phoneNumber=phoneNumber;
+        this.address=address;
         this.role = "user";
     }
 

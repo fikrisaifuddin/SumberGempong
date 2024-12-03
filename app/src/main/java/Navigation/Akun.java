@@ -25,6 +25,7 @@ import AkunSetClass.TentangAnda;
 import User.Login;
 import adapter.akunadapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -46,8 +47,8 @@ public class Akun extends Fragment implements akunadapter.OnAkunItemClickListene
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         List<AkunItem> akunItems = new ArrayList<>();
-        akunItems.add(new AkunItem(R.drawable.akun, "Tentang Anda", "Update informasi pribadi anda"));
-        akunItems.add(new AkunItem(R.drawable.akun, "Akun", "Ubah password"));
+        akunItems.add(new AkunItem(0, "Akun", "Ubah password"));
+        akunItems.add(new AkunItem(0, "Tentang Aplikasi", "informasi alur aplikasi dan kontak admin"));
         akunItems.add(new AkunItem(0, "Log Out", null));
 
         // Mengecek role user dan menambah item jika admin
@@ -57,7 +58,16 @@ public class Akun extends Fragment implements akunadapter.OnAkunItemClickListene
     }
 
     private void checkUserRoleAndAddSettingsApp(List<AkunItem> akunItems, RecyclerView recyclerView) {
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            // Jika pengguna tidak login
+            Toast.makeText(getContext(), "Pengguna tidak terautentikasi", Toast.LENGTH_SHORT).show();
+            akunadapter adapter = new akunadapter(akunItems, Akun.this);
+            recyclerView.setAdapter(adapter);
+            return;
+        }
+
+        String userId = user.getUid();
 
         mDatabase.child(userId).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -66,7 +76,7 @@ public class Akun extends Fragment implements akunadapter.OnAkunItemClickListene
                     String role = snapshot.child("role").getValue(String.class);
 
                     if ("admin".equalsIgnoreCase(role)) {
-                        akunItems.add(new AkunItem(0, "Settings Apps", null)); // Menambahkan item "Settings Apps" hanya untuk admin
+                        akunItems.add(new AkunItem(0, "Settings Apps", "Fitur khusus untuk admin wisata")); // Menambahkan item "Settings Apps" hanya untuk admin
                     }
                 }
             } else {
@@ -81,10 +91,10 @@ public class Akun extends Fragment implements akunadapter.OnAkunItemClickListene
 
     @Override
     public void onItemClick(AkunItem akunItem) {
-        if (akunItem.getTitle().equals("Tentang Anda")) {
-            moveToFragment(new TentangAnda());
-        } else if (akunItem.getTitle().equals("Akun")) {
+        if (akunItem.getTitle().equals("Akun")) {
             moveToFragment(new AkunSet());
+        } else if (akunItem.getTitle().equals("Tentang Aplikasi")) {
+            moveToFragment(new TentangAnda());
         } else if (akunItem.getTitle().equals("Settings Apps")) {
             moveToFragment(new SettingsApps());
         } else if (akunItem.getTitle().equals("Log Out")) {
@@ -105,6 +115,8 @@ public class Akun extends Fragment implements akunadapter.OnAkunItemClickListene
         Intent intent = new Intent(getContext(), Login.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        getActivity().finish();
+        if (getActivity() != null) {
+            getActivity().finish();
+        }
     }
 }

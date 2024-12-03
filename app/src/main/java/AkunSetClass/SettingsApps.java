@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,13 +15,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.s_gempong.R;
 
-import MenuCenter.Booking_Tiket;
-import MenuCenter.DaftarMakanan;
 import MenuSettingsApps.SetHargaTiket;
 import MenuSettingsApps.SetHomestay;
 import MenuSettingsApps.SetMakanan;
 import MenuSettingsApps.SetOleholeh;
-import MenuSettingsApps.SetPendopo;
+import MenuSettingsApps.AcaraManage;
 import MenuSettingsApps.SetWahana;
 import MenuSettingsApps.UserActivity;
 
@@ -59,7 +56,7 @@ public class SettingsApps extends Fragment {
 
         pendopoButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { switchFragment(new SetPendopo()); }
+            public void onClick(View v) { switchFragment(new AcaraManage()); }
         });
 
         makananButton.setOnClickListener(new View.OnClickListener() {

@@ -1,26 +1,21 @@
 package MenuCenter;
 
-
 public class TiketBooking {
-    private String tanggal;
-    private int jumlahPengunjung;
-    private int totalHarga;
 
-    public TiketBooking(String tanggal, int jumlahPengunjung, int totalHarga) {
-        this.tanggal = tanggal;
+    private int jumlahPengunjung;
+    private double totalHarga;
+
+    // Constructor default untuk Firebase
+    public TiketBooking() {
+    }
+
+    // Constructor dengan parameter
+    public TiketBooking(int jumlahPengunjung, double totalHarga) {
         this.jumlahPengunjung = jumlahPengunjung;
         this.totalHarga = totalHarga;
     }
 
-    // Getter dan setter jika diperlukan
-    public String getTanggal() {
-        return tanggal;
-    }
-
-    public void setTanggal(String tanggal) {
-        this.tanggal = tanggal;
-    }
-
+    // Getter dan Setter
     public int getJumlahPengunjung() {
         return jumlahPengunjung;
     }
@@ -29,11 +24,11 @@ public class TiketBooking {
         this.jumlahPengunjung = jumlahPengunjung;
     }
 
-    public int getTotalHarga() {
+    public double getTotalHarga() {
         return totalHarga;
     }
 
-    public void setTotalHarga(int totalHarga) {
+    public void setTotalHarga(double totalHarga) {
         this.totalHarga = totalHarga;
     }
 }

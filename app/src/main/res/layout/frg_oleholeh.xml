@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey1">
+    android:background="@drawable/book002">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/top_setting"
@@ -44,7 +44,7 @@
             android:fontFamily="@font/nunito_extrabold"
             android:button="@null"
             android:background="@drawable/rounded_button_selected"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             />
 
         <!-- Button Oleh Oleh -->
@@ -58,7 +58,7 @@
             android:fontFamily="@font/nunito_extrabold"
             android:button="@null"
             android:background="@drawable/rounded_button_unselected"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <LinearLayout

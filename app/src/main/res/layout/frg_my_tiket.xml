@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/book001">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/top_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:backgroundTint="@color/green1"
+        app:titleTextColor="@android:color/white"
+        app:titleTextAppearance="@style/CustomToolbarTitleText"
+        app:title="Booking Tiket"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/top_setting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:orientation="horizontal"
+            android:gravity="top"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/radius002"
+            android:paddingHorizontal="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Booking dan lakukan pembayaran di loked"
+                    android:textColor="@color/black"
+                    android:layout_gravity="start"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="10dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:orientation="horizontal"
+        android:gravity="top"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/radius002"
+        android:paddingHorizontal="10dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="start|center"
+            android:src="@drawable/sg_wisatawan"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:orientation="vertical"
+                android:gravity="top"
+                android:layout_marginHorizontal="5dp">
+
+                <TextView
+                        android:id="@+id/pengunjung"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="jumlah pengunjung : "
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_gravity="start"
+                        android:textSize="15sp"/>
+
+                    <EditText
+                        android:id="@+id/jmlh_pengunjung"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:paddingLeft="20dp"
+                        android:focusable="false"
+                        android:clickable="false"
+                        android:textColor="@color/black"
+                        android:hint="jumlah pengunjung"
+                        android:inputType="number"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:orientation="vertical"
+            android:gravity="top"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/radius002"
+            android:paddingHorizontal="10dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="harga tiket : "
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_gravity="start"
+                android:textSize="18sp"
+                android:layout_marginBottom="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:paddingLeft="20dp"
+                        android:textColor="@color/black"
+                        android:hint="Rp."
+                        android:textSize="20dp"
+                        android:inputType="number"/>
+
+                    <EditText
+                        android:id="@+id/total"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:hint="00"
+                        android:inputType="number"
+                        android:paddingLeft="20dp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_book"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:text="Booking"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/green1"
+                android:layout_marginTop="40dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

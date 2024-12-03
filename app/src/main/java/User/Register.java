@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.s_gempong.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +29,10 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.green1));
+
 
         emailET = findViewById(R.id.email_ET);
         passwordET = findViewById(R.id.password_ET);
@@ -85,7 +92,6 @@ public class Register extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                        // Membuat objek user dengan name dan email
                         User user = new User(name, email);
 
                         // Periksa apakah admin sudah ada

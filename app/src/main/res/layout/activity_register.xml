@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background_sg_2"
+    android:background="@drawable/newlogin"
     android:padding="16dp">
 
     <LinearLayout
@@ -15,15 +15,34 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.733"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.433">
+        app:layout_constraintVertical_bias="0.333">
 
-        <ImageView
+    <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/ssgempong" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/radius002"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="15dp"
+        android:gravity="center">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/sg_1" />
+            android:text="REGISTER"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textAppearance="@font/nunito_extrabold"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/name_ET"
@@ -70,6 +89,8 @@
             android:backgroundTint="@color/green1"
             android:text="Register"
             android:textColor="@color/white" />
+
+    </LinearLayout>
 
 
     </LinearLayout>

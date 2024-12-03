@@ -1,16 +1,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="10dp"
+    android:orientation="vertical"
     android:layout_margin="5dp"
-    android:background="@drawable/radius">
+    android:background="@drawable/radius003">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+        android:text="Booking Acara"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="@drawable/radius003">
+
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:layout_weight="1"
+        android:layout_gravity="center"
         android:orientation="vertical">
 
         <LinearLayout
@@ -35,6 +53,8 @@
                 android:textSize="18dp"
                 android:backgroundTint="@color/black"/>
         </LinearLayout>
+
+
 
     </LinearLayout>
 
@@ -159,5 +179,5 @@
                 android:textColor="@android:color/black"/>
         </LinearLayout>
     </LinearLayout>
-
+    </LinearLayout>
 </LinearLayout>

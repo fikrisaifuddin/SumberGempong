@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white">
+    android:background="@drawable/book001">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/top_setting"
@@ -37,7 +37,7 @@
             android:gravity="top"
             android:layout_marginHorizontal="5dp"
             android:layout_marginTop="6dp"
-            android:background="@drawable/e_text_white"
+            android:background="@drawable/radius002"
             android:paddingHorizontal="10dp">
 
             <LinearLayout
@@ -94,7 +94,7 @@
             android:gravity="top"
             android:layout_marginHorizontal="5dp"
             android:layout_marginTop="6dp"
-            android:background="@drawable/e_text_white"
+            android:background="@drawable/radius002"
             android:paddingHorizontal="10dp">
 
             <ImageView
@@ -143,7 +143,7 @@
             android:gravity="top"
             android:layout_marginHorizontal="5dp"
             android:layout_marginTop="6dp"
-            android:background="@drawable/e_text_white"
+            android:background="@drawable/radius002"
             android:paddingHorizontal="10dp">
 
             <ImageView
@@ -191,7 +191,7 @@
             android:gravity="top"
             android:layout_marginHorizontal="5dp"
             android:layout_marginTop="6dp"
-            android:background="@drawable/e_text_white"
+            android:background="@drawable/radius002"
             android:paddingHorizontal="10dp">
 
             <TextView

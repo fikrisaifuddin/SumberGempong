@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.s_gempong.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,19 +39,23 @@ public class UserActivity extends Fragment {
         // Menginflate layout fragment
         View view = inflater.inflate(R.layout.set_user, container, false);
 
+        // Toolbar setup
         Toolbar toolbar = view.findViewById(R.id.top_setting);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(v -> getActivity().onBackPressed());
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        if (activity != null) {
+            activity.setSupportActionBar(toolbar);
+            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            toolbar.setNavigationOnClickListener(v -> getActivity().onBackPressed());
+        }
 
-
+        // RecyclerView setup
         recyclerView = view.findViewById(R.id.all_user);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         userList = new ArrayList<>();
         userAdapter = new UserAdapter(getActivity(), userList);
         recyclerView.setAdapter(userAdapter);
 
-
+        // Firebase authentication
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
@@ -57,27 +63,30 @@ public class UserActivity extends Fragment {
             String userId = currentUser.getUid();
             databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
+            // Check if the user is admin
             databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         String role = dataSnapshot.child("role").getValue(String.class);
 
-                        // Jika role admin, ambil semua pengguna dengan role user
+                        // If role is admin, fetch all users with role "user"
                         if ("admin".equals(role)) {
-                            // Ambil semua data pengguna dengan role "user"
                             databaseReference.orderByChild("role").equalTo("user")
                                     .addValueEventListener(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
-                                            userList.clear();
+                                            userList.clear(); // Clear previous data
                                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                                 String username = snapshot.child("username").getValue(String.class);
                                                 String email = snapshot.child("email").getValue(String.class);
 
-                                                userList.add(new User(username, email));
+                                                // Ensure username and email are not null
+                                                if (username != null && email != null) {
+                                                    userList.add(new User(username, email));
+                                                }
                                             }
-                                            userAdapter.notifyDataSetChanged();
+                                            userAdapter.notifyDataSetChanged(); // Update the adapter
                                         }
 
                                         @Override
@@ -98,7 +107,6 @@ public class UserActivity extends Fragment {
                     Toast.makeText(getActivity(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                 }
             });
-
         } else {
             Toast.makeText(getActivity(), "Pengguna belum login", Toast.LENGTH_SHORT).show();
         }

@@ -74,7 +74,7 @@ public class Booking_Homestay extends Fragment {
                 etHarga.setText("");
                 etJumlahPengunjung.setText("");
 
-                Snackbar.make(getView(), "Booking berhasil.", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(getView(), "Lakukan DP terlebih dahulu", Snackbar.LENGTH_SHORT).show();
             }
         });
         return view;
@@ -124,6 +124,9 @@ public class Booking_Homestay extends Fragment {
                     if (dateEditText == etTanggal) {
                         checkInDate = selectedDate;
                     }
+
+                    // Update harga total setelah memilih tanggal
+                    updateHargaTotal();
                 },
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
@@ -136,6 +139,39 @@ public class Booking_Homestay extends Fragment {
 
         datePickerDialog.show();
     }
+
+
+    private int calculateNights(String checkIn, String checkOut) {
+        try {
+            java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
+            java.util.Date dateIn = dateFormat.parse(checkIn);
+            java.util.Date dateOut = dateFormat.parse(checkOut);
+
+            long difference = dateOut.getTime() - dateIn.getTime();
+            return (int) (difference / (1000 * 60 * 60 * 24)); // Menghitung jumlah hari
+        } catch (Exception e) {
+            Snackbar.make(getView(), "Format tanggal salah!", Snackbar.LENGTH_SHORT).show();
+            return 0;
+        }
+    }
+
+    private void updateHargaTotal() {
+        String checkIn = etTanggal.getText().toString();
+        String checkOut = elTanggal.getText().toString();
+
+        if (!checkIn.isEmpty() && !checkOut.isEmpty()) {
+            int nights = calculateNights(checkIn, checkOut);
+            if (nights > 0) {
+                int hargaPerMalam = Integer.parseInt(etHarga.getText().toString());
+                int totalHarga = nights * hargaPerMalam;
+                etHarga.setText(String.valueOf(totalHarga));
+            } else {
+                etHarga.setText("0");
+            }
+        }
+    }
+
+
 
     private void loadHomestaysFromFirebase(final ArrayAdapter<String> adapter, Spinner spinner) {
         databaseReference = FirebaseDatabase.getInstance().getReference("homestays");
@@ -195,11 +231,15 @@ public class Booking_Homestay extends Fragment {
     private boolean validateForm() {
         String checkIn = etTanggal.getText().toString();
         String checkOut = elTanggal.getText().toString();
-        String totalPrice = etHarga.getText().toString();
         String jumlahPengunjung = etJumlahPengunjung.getText().toString();
 
-        if (checkIn.isEmpty() || checkOut.isEmpty() || totalPrice.isEmpty() || jumlahPengunjung.isEmpty()) {
+        if (checkIn.isEmpty() || checkOut.isEmpty() || etHarga.getText().toString().isEmpty() || jumlahPengunjung.isEmpty()) {
             Snackbar.make(getView(), "Harap lengkapi semua kolom", Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (calculateNights(checkIn, checkOut) <= 0) {
+            Snackbar.make(getView(), "Tanggal keluar harus lebih dari tanggal masuk!", Snackbar.LENGTH_SHORT).show();
             return false;
         }
 
@@ -209,13 +249,21 @@ public class Booking_Homestay extends Fragment {
     private void saveBookingToFirebase() {
         String checkIn = etTanggal.getText().toString();
         String checkOut = elTanggal.getText().toString();
-        String totalPrice = etHarga.getText().toString();
         String jumlahPengunjung = etJumlahPengunjung.getText().toString();
         String userId = mAuth.getCurrentUser().getUid();
 
+        int nights = calculateNights(checkIn, checkOut);
+        if (nights <= 0) {
+            Snackbar.make(getView(), "Tanggal keluar harus lebih dari tanggal masuk!", Snackbar.LENGTH_SHORT).show();
+            return;
+        }
+
+        int hargaPerMalam = Integer.parseInt(etHarga.getText().toString());
+        int totalHarga = nights * hargaPerMalam;
+
         String bookingCode = generateUniqueCode();
 
-        HomestayBooking booking = new HomestayBooking(checkIn, checkOut, selectedHomestay, Integer.parseInt(jumlahPengunjung), Integer.parseInt(totalPrice), userId, bookingCode);
+        HomestayBooking booking = new HomestayBooking(checkIn, checkOut, selectedHomestay, Integer.parseInt(jumlahPengunjung), totalHarga, userId, bookingCode);
 
         DatabaseReference bookingReference = FirebaseDatabase.getInstance().getReference("bookinghomestay").child(userId);
         String bookingId = bookingReference.push().getKey();
@@ -226,4 +274,5 @@ public class Booking_Homestay extends Fragment {
                     .addOnFailureListener(e -> Snackbar.make(getView(), "Gagal menyimpan booking", Snackbar.LENGTH_SHORT).show());
         }
     }
+
 }

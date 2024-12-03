@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/grey1">
+    android:background="@color/white">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/top_setting"
@@ -97,7 +97,7 @@
             <TextView
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
-                android:text="Management Pendopo"
+                android:text="Management Acara"
                 android:textSize="20sp"
                 android:backgroundTint="@color/black"
                 android:layout_gravity="start"
